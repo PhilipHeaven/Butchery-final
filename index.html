@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three Kings Butchery — Halal Meat Auckland</title>
+  <meta name="description" content="Auckland's halal butchery. Browse fresh beef, lamb, chicken and more. Order online for in-store collection at Three Kings Butchery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #C0392B;
+      --red-dark: #a93226;
+      --red-light: #e74c3c;
+      --cream: #F5F0E8;
+      --cream-dark: #ede5d4;
+      --black: #1A1A1A;
+      --grey: #6b7280;
+      --grey-light: #f3f4f6;
+      --white: #ffffff;
+      --border: #e5e7eb;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--black);
+      background: var(--cream);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    h1, h2, h3, h4 { font-family: 'Nunito', sans-serif; letter-spacing: 0.02em; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: inherit; }
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      background: #0f0f0f;
+      padding: 0.45rem 1.5rem;
+      border-bottom: 1px solid #0f0f0f;
+    }
+    .top-bar-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 2rem;
+    }
+    .top-bar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #aaa;
+      font-size: 0.8rem;
+    }
+    .top-bar-item span:first-child { color: var(--red); font-size: 0.85rem; }
+    .top-bar-item a { color: #aaa; transition: color 0.15s; }
+    .top-bar-item a:hover { color: var(--white); }
+
+    /* ===== HEADER ===== */
+    header {
+      background: #0f0f0f;
+      position: static;
+      z-index: 100;
+      border-bottom: 3px solid var(--red);
+    }
+    .header-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-banner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      width: 100%;
+      padding: 0.5rem 2rem;
+      position: relative;
+    }
+    .ribbon-svg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .header-banner nav, .header-banner .logo {
+      position: relative;
+      z-index: 1;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .logo img {
+      height: 180px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+    nav { display: flex; align-items: center; gap: 1.75rem; }
+    nav.nav-left { justify-content: flex-end; padding-right: 3.5rem; }
+    nav.nav-right { justify-content: flex-start; padding-left: 3.5rem; }
+    nav a {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    nav a:hover, nav a.active { color: var(--white); }
+    .cart-btn {
+      background: var(--red);
+      border: none;
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .cart-btn:hover { background: var(--red-dark); }
+    .cart-count {
+      background: var(--white);
+      color: var(--red);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hamburger { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; }
+    .mobile-nav {
+      display: none;
+      background: var(--black);
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #333;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      color: #ccc;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid #222;
+      cursor: pointer;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--red); color: var(--white); }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+    .btn-outline:hover { background: var(--white); color: var(--black); }
+    .btn-outline-red { background: transparent; color: var(--red); border: 2px solid var(--red); }
+    .btn-outline-red:hover { background: var(--red); color: var(--white); }
+    .btn-sm { padding: 0.5rem 1rem; font-size: 0.8rem; }
+    .btn-full { width: 100%; }
+
+    /* ===== SECTION HELPERS ===== */
+    .section { padding: 5rem 1.5rem; }
+    .section-cream { background: var(--cream); }
+    .section-dark { background: var(--black); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--grey); max-width: 600px; }
+    .section-header { margin-bottom: 3rem; }
+
+    /* ===== HOMEPAGE ===== */
+    /* Hero */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.1) 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0;
+      display: block;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(192,57,43,0.15);
+      border: 1px solid rgba(192,57,43,0.4);
+      color: #e87c73;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--red-light); }
+    .hero p {
+      color: #bbb;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 440px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-visual {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      align-self: stretch;
+    }
+    .hero-emblem {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(192,57,43,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero-emblem-inner {
+      width: 240px;
+      height: 240px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid var(--red-dark);
+      box-shadow: 0 0 60px rgba(192,57,43,0.4), inset 0 0 40px rgba(0,0,0,0.2);
+    }
+    .hero-emblem .arabic-large { font-size: 2.5rem; color: var(--cream); line-height: 1; }
+    .hero-emblem .knives { font-size: 1.8rem; color: rgba(245,240,232,0.8); margin: 0.25rem 0; }
+    .hero-emblem .brand-name { font-family: 'Nunito', sans-serif; font-size: 0.7rem; color: var(--cream); letter-spacing: 0.08em; text-align: center; margin-top: 0.25rem; }
+    .hero-emblem .premium { font-size: 0.55rem; color: rgba(245,240,232,0.7); letter-spacing: 0.1em; }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid #0f0f0f;
+    }
+    .stat-item { }
+    .stat-num { font-family: 'Nunito', sans-serif; font-size: 1.8rem; color: var(--white); font-weight: 700; }
+    .stat-label { font-size: 0.75rem; color: #888; letter-spacing: 0.05em; }
+
+    /* Trust bar */
+    .trust-bar {
+      background: var(--red);
+      padding: 1rem 1.5rem;
+    }
+    .trust-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .trust-item span:first-child { font-size: 1.1rem; }
+
+    /* Featured products */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+    .product-img {
+      height: 220px;
+      background: #f0ebe0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .product-img .halal-dot {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+    .product-info { padding: 1.25rem; }
+    .product-category { font-size: 0.75rem; color: var(--red); font-weight: 600; margin-bottom: 0.25rem; }
+    .product-name { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .product-weight { font-size: 0.8rem; color: var(--grey); margin-bottom: 0.75rem; }
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
+    .product-price { font-family: 'Nunito', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--red); }
+    .product-price .unit { font-size: 0.75rem; color: var(--grey); font-family: 'Nunito', sans-serif; font-weight: 400; }
+    .add-to-cart-btn {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background 0.2s;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+    .add-to-cart-btn:hover { background: var(--red); }
+
+    /* Why choose us */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: var(--cream-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1rem;
+    }
+    .feature-card h3 { font-family: 'Nunito', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { color: var(--grey); font-size: 0.9rem; }
+
+    /* Halal section */
+    .halal-section {
+      background: var(--black);
+      background-image: linear-gradient(135deg, #1a1a1a 0%, #2d0a08 100%);
+      color: var(--white);
+    }
+    .halal-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .halal-badge-large {
+      width: 200px;
+      height: 200px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid var(--red-dark);
+      box-shadow: 0 0 60px rgba(192,57,43,0.3);
+      margin: 0 auto;
+    }
+    .halal-badge-large .ar { font-size: 3rem; color: var(--cream); }
+    .halal-badge-large .hl { font-family: 'Nunito', sans-serif; font-size: 1rem; color: var(--cream); letter-spacing: 0.1em; }
+    .halal-text h2 { color: var(--white); margin-bottom: 1rem; }
+    .halal-text p { color: #bbb; margin-bottom: 1.5rem; }
+    .halal-points { list-style: none; }
+    .halal-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: #ccc;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+    .halal-points li::before { content: '✓'; color: var(--red-light); font-weight: 700; flex-shrink: 0; }
+
+    /* CTA banner */
+    .cta-banner {
+      background: var(--red);
+      background-image: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 4rem 1.5rem;
+    }
+    .cta-banner h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.75rem; }
+    .cta-banner p { font-size: 1.05rem; opacity: 0.85; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* ===== SHOP PAGE ===== */
+    .shop-header {
+      background: var(--black);
+      padding: 3rem 1.5rem;
+      color: var(--white);
+    }
+    .shop-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .shop-header p { color: #aaa; }
+    .shop-body { padding: 2.5rem 1.5rem; }
+    .shop-layout { display: grid; grid-template-columns: 220px 1fr; gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
+    .filters-sidebar {}
+    .filters-title { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--red); }
+    .filter-group { margin-bottom: 1.5rem; }
+    .filter-group-title { font-size: 0.78rem; font-weight: 600; color: var(--grey); margin-bottom: 0.5rem; }
+    .filter-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      color: var(--black);
+      cursor: pointer;
+      margin-bottom: 0.2rem;
+      transition: background 0.15s;
+    }
+    .filter-btn:hover { background: var(--cream); }
+    .filter-btn.active { background: var(--red); color: var(--white); font-weight: 600; }
+    .shop-main {}
+    .shop-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .results-count { font-size: 0.9rem; color: var(--grey); }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .search-bar input {
+      border: none;
+      padding: 0.5rem 0.75rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      width: 220px;
+    }
+    .search-bar button {
+      background: var(--red);
+      border: none;
+      color: var(--white);
+      padding: 0.5rem 0.75rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    /* ===== PRODUCT DETAIL PAGE ===== */
+    .product-detail { padding: 3rem 1.5rem; }
+    .product-detail-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .product-detail-img { border-radius: 8px; background: var(--cream); height: 440px; display: flex; align-items: center; justify-content: center; font-size: 8rem; }
+    .product-detail-info {}
+    .breadcrumb { font-size: 0.8rem; color: var(--grey); margin-bottom: 1.5rem; cursor: pointer; }
+    .breadcrumb span:hover { color: var(--red); }
+    .product-detail-category { font-size: 0.85rem; font-weight: 600; color: var(--red); margin-bottom: 0.5rem; }
+    .product-detail-name { font-family: 'Nunito', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .product-detail-price { font-family: 'Nunito', sans-serif; font-size: 2rem; color: var(--red); margin-bottom: 0.5rem; }
+    .product-detail-weight { color: var(--grey); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .product-detail-desc { color: #444; line-height: 1.7; margin-bottom: 2rem; font-size: 0.95rem; }
+    .halal-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--cream);
+      border-left: 4px solid var(--red);
+      padding: 0.75rem 1rem;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .qty-control { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .qty-control label { font-size: 0.85rem; font-weight: 600; }
+    .qty-input { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .qty-input button { background: var(--grey-light); border: none; width: 36px; height: 36px; font-size: 1.1rem; cursor: pointer; transition: background 0.15s; }
+    .qty-input button:hover { background: var(--cream); }
+    .qty-input span { width: 44px; text-align: center; font-weight: 600; font-size: 1rem; }
+
+    /* ===== CART PAGE ===== */
+    .cart-page { padding: 3rem 1.5rem; }
+    .cart-page h1 { font-family: 'Nunito', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; }
+    .cart-layout { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 2rem; margin-top: 2rem; }
+    .collection-notice {
+      background: #fff8e1;
+      border: 1px solid #f59e0b;
+      border-left: 4px solid #f59e0b;
+      padding: 0.85rem 1rem;
+      border-radius: 0 4px 4px 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .cart-item-img { width: 80px; height: 80px; background: var(--cream); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; flex-shrink: 0; }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 600; }
+    .cart-item-weight { font-size: 0.8rem; color: var(--grey); }
+    .cart-item-price { font-family: 'Nunito', sans-serif; font-size: 1.1rem; color: var(--red); margin-top: 0.25rem; }
+    .cart-item-actions { display: flex; align-items: center; gap: 1rem; }
+    .item-qty { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .item-qty button { background: var(--grey-light); border: none; width: 30px; height: 30px; cursor: pointer; font-size: 1rem; }
+    .item-qty span { width: 36px; text-align: center; font-size: 0.9rem; font-weight: 600; }
+    .remove-btn { background: none; border: none; color: var(--grey); cursor: pointer; font-size: 1.1rem; transition: color 0.15s; }
+    .remove-btn:hover { color: var(--red); }
+    .empty-cart { text-align: center; padding: 4rem 1rem; color: var(--grey); }
+    .empty-cart .icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-cart h3 { font-family: 'Nunito', sans-serif; font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--black); }
+    .order-summary { background: var(--cream); border-radius: 8px; padding: 1.5rem; align-self: start; position: sticky; top: 90px; }
+    .order-summary h3 { font-family: 'Nunito', sans-serif; font-size: 1.2rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--cream-dark); }
+    .summary-line { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.6rem; }
+    .summary-line.total { font-weight: 700; font-size: 1.05rem; padding-top: 0.75rem; border-top: 1px solid var(--cream-dark); margin-top: 0.5rem; }
+    .pickup-info { background: var(--cream); border-radius: 6px; padding: 0.85rem; font-size: 0.8rem; color: var(--grey); margin: 1rem 0; line-height: 1.5; }
+    .pickup-info strong { color: var(--black); display: block; margin-bottom: 0.3rem; }
+
+    /* ===== ABOUT PAGE ===== */
+    .about-hero { background: var(--black); background-image: linear-gradient(135deg, #1a1a1a 0%, #2d0a08 100%); color: var(--white); padding: 5rem 1.5rem; text-align: center; }
+    .about-hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .about-hero p { color: #bbb; max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+    .about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-story-img { height: 400px; background: var(--cream-dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+    .value-card { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .value-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .value-card h4 { font-family: 'Nunito', sans-serif; font-size: 1rem; margin-bottom: 0.4rem; }
+    .value-card p { font-size: 0.85rem; color: var(--grey); }
+
+    /* ===== CONTACT PAGE ===== */
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1000px; margin: 0 auto; }
+    .contact-info h3 { font-family: 'Nunito', sans-serif; font-size: 1.3rem; margin-bottom: 1.5rem; }
+    .contact-detail { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-icon { width: 44px; height: 44px; background: var(--red); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .contact-detail-text h4 { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+    .contact-detail-text p { color: var(--grey); font-size: 0.9rem; line-height: 1.5; }
+    .hours-table { width: 100%; font-size: 0.9rem; border-collapse: collapse; margin-top: 0.5rem; }
+    .hours-table td { padding: 0.3rem 0; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; }
+    .map-placeholder { background: var(--cream); border-radius: 8px; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed var(--cream-dark); color: var(--grey); text-align: center; padding: 1rem; }
+    .map-placeholder .map-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+    .contact-form label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: var(--red); }
+    .contact-form textarea { height: 120px; resize: vertical; }
+
+    /* ===== FAQ PAGE ===== */
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 0;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      gap: 1rem;
+    }
+    .faq-question:hover { color: var(--red); }
+    .faq-chevron { font-size: 0.9rem; transition: transform 0.2s; flex-shrink: 0; color: var(--red); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { display: none; color: var(--grey); font-size: 0.95rem; line-height: 1.7; padding-bottom: 1.25rem; }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* ===== ORDER CONFIRMATION ===== */
+    .confirm-page { padding: 4rem 1.5rem; text-align: center; }
+    .confirm-icon { width: 80px; height: 80px; background: #d4edda; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1.5rem; }
+    .confirm-page h1 { font-size: 2rem; margin-bottom: 0.5rem; color: #155724; }
+    .confirm-page > p { color: var(--grey); margin-bottom: 2rem; }
+    .confirm-box { background: var(--cream); border-radius: 8px; padding: 2rem; max-width: 500px; margin: 0 auto 2rem; text-align: left; }
+    .confirm-box h3 { font-family: 'Nunito', sans-serif; font-size: 1.1rem; margin-bottom: 1rem; }
+    .confirm-row { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 0.4rem 0; border-bottom: 1px solid var(--cream-dark); }
+    .confirm-row:last-child { border-bottom: none; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--black); color: #bbb; margin-top: auto; }
+    .footer-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .footer-brand {}
+    .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .footer-logo-badge { width: 44px; height: 44px; background: var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--cream); }
+    .footer-logo-text .name { font-family: 'Nunito', sans-serif; color: var(--white); font-size: 1rem; letter-spacing: 0.05em; }
+    .footer-logo-text .tag { font-size: 0.6rem; color: #666; letter-spacing: 0.1em; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .halal-cert-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(192,57,43,0.1); border: 1px solid rgba(192,57,43,0.3); color: #e87c73; padding: 0.4rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .footer-col h4 { font-family: 'Nunito', sans-serif; color: var(--white); font-size: 0.95rem; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a { font-size: 0.85rem; color: #bbb; cursor: pointer; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-hours { font-size: 0.82rem; line-height: 1.8; }
+    .footer-hours .day { color: var(--white); font-weight: 500; }
+    .footer-bottom { border-top: 1px solid #0f0f0f; padding: 1rem 1.5rem; }
+    .footer-bottom-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; }
+    .social-links { display: flex; gap: 0.75rem; }
+    .social-link { width: 34px; height: 34px; background: #0f0f0f; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: #bbb; cursor: pointer; transition: background 0.15s; }
+    .social-link:hover { background: var(--red); color: var(--white); }
+
+    /* ===== REVIEWS ===== */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+    }
+    .review-card {
+      background: var(--cream-dark);
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .reviewer-avatar {
+      width: 22px;
+      height: 22px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 700; font-size: 0.72rem; }
+    .reviewer-meta { display: none; }
+    .review-stars { color: #f59e0b; font-size: 0.7rem; letter-spacing: 1px; }
+    .review-text { color: #555; font-size: 0.72rem; line-height: 1.45; flex: 1; }
+    .review-date { display: none; }
+    @media (max-width: 900px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 580px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== TORN PAPER DIVIDERS ===== */
+    .torn-divider {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-top: -1px;
+    }
+    .torn-divider svg { display: block; width: 100%; height: 18px; }
+
+    /* ===== WHATSAPP BUTTON ===== */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    }
+    .whatsapp-btn svg { width: 30px; height: 30px; }
+
+    /* ===== TOAST NOTIFICATION ===== */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--black);
+      color: var(--white);
+      padding: 0.85rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s;
+      max-width: 320px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { border-left: 4px solid #27ae60; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .halal-inner { grid-template-columns: 1fr; }
+      .about-story { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .shop-layout { grid-template-columns: 1fr; }
+      .filters-sidebar { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+      .filters-title { display: none; }
+      .filter-group { margin-bottom: 0; }
+      .filter-group-title { display: none; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+      .product-detail-inner { grid-template-columns: 1fr; }
+      .cart-layout { grid-template-columns: 1fr; }
+      .order-summary { position: static; }
+    }
+    @media (max-width: 640px) {
+      nav { display: none; }
+      .hamburger { display: block; }
+      .footer-main { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 1rem; }
+      .trust-bar-inner { gap: 1.25rem; }
+      .hero { min-height: 85vh; }
+      .halal-inner { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="top-bar-item">
+      <span>📞</span>
+      <a href="tel:+64096240714">09 624 0714</a>
+    </div>
+    <div class="top-bar-item">
+      <span>✉</span>
+      <a href="mailto:hello@threekingsbutchery.co.nz">hello@threekingsbutchery.co.nz</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="header-banner">
+
+      <!-- Ribbon banner with central circle -->
+      <svg class="ribbon-svg" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Left ribbon tail (fans out, V-notch at end) -->
+        <path d="M545,28 L30,18 L0,40 L30,62 L545,52 Z" fill="#C0392B"/>
+        <!-- Right ribbon tail (fans out, V-notch at end) -->
+        <path d="M655,28 L1170,18 L1200,40 L1170,62 L655,52 Z" fill="#C0392B"/>
+        <!-- Circle -->
+        <circle cx="600" cy="40" r="46" fill="#C0392B" stroke="#1A1A1A" stroke-width="4"/>
+        <!-- Inner circle ring -->
+        <circle cx="600" cy="40" r="38" fill="none" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+      </svg>
+
+      <nav class="nav-left">
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('shop')">Shop</a>
+        <a onclick="showPage('about')">About Us</a>
+      </nav>
+      <div class="logo" onclick="showPage('home')">
+        <img src="logo.jpg" alt="Three Kings Butchery" />
+      </div>
+      <nav class="nav-right">
+        <a onclick="showPage('contact')">Contact</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        <button class="cart-btn" onclick="showPage('cart')">
+          🛒 Cart <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
+    <button class="hamburger" onclick="toggleMobileNav()">☰</button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a onclick="showPage('home'); toggleMobileNav()">Home</a>
+    <a onclick="showPage('shop'); toggleMobileNav()">Shop</a>
+    <a onclick="showPage('about'); toggleMobileNav()">About Us</a>
+    <a onclick="showPage('contact'); toggleMobileNav()">Contact</a>
+    <a onclick="showPage('faq'); toggleMobileNav()">FAQ</a>
+    <a onclick="showPage('cart'); toggleMobileNav()">🛒 Cart</a>
+  </div>
+</header>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <img class="hero-bg-img" src="hero 3.jpg" alt="Three Kings Butchery fresh halal meats" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Fresh <span>Halal</span><br/>Meats</h1>
+      <p>Fresh, ethically sourced cuts delivered to your table. Order online, collect in-store at Three Kings.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="showPage('shop')">Shop Now</button>
+        <button class="btn btn-outline" onclick="showPage('about')">Our Story</button>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Torn: hero → featured -->
+  <div class="torn-divider" style="background:#2d0a08;">
+    <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 L0,22 L28,32 L55,14 L82,26 L108,8 L135,20 L162,30 L190,12 L218,24 L245,6 L272,18 L300,28 L328,10 L355,22 L382,34 L410,16 L437,8 L464,26 L491,14 L519,30 L546,4 L573,18 L600,28 L627,10 L654,22 L681,32 L709,8 L736,20 L763,30 L790,12 L817,24 L845,6 L872,18 L899,28 L926,14 L953,30 L980,10 L1008,22 L1035,34 L1062,16 L1089,8 L1116,26 L1143,14 L1170,28 L1200,18 L1200,45 Z" fill="#C0392B"/>
+    </svg>
+  </div>
+
+  <!-- Featured products -->
+  <section class="section" style="background:var(--red);">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-sub">Hand-selected cuts from our butchers — fresh, and ready for collection.</p>
+      </div>
+      <div class="product-grid" id="featured-grid"></div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <button class="btn btn-outline-red" onclick="showPage('shop')">View All Products →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Torn: featured → reviews -->
+  <div class="torn-divider" style="background:#C0392B;">
+    <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 L0,22 L25,14 L52,30 L79,10 L106,24 L133,6 L160,28 L187,16 L215,32 L242,8 L269,22 L296,34 L323,12 L350,26 L377,4 L404,20 L431,32 L458,10 L485,24 L512,6 L539,28 L566,14 L593,30 L620,8 L647,22 L674,34 L701,12 L728,26 L755,4 L782,20 L809,32 L836,10 L863,24 L890,6 L917,28 L944,14 L971,30 L998,8 L1025,22 L1052,34 L1079,12 L1106,26 L1133,4 L1160,20 L1187,32 L1200,24 L1200,45 Z" fill="#F5F0E8"/>
+    </svg>
+  </div>
+
+  <!-- Reviews -->
+  <section class="section" style="background:var(--cream); padding: 0.3rem 1.5rem 0.6rem;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.5rem;">
+          <span style="color:#f59e0b; font-size:1.1rem;">★★★★★</span>
+          <span style="font-weight:600;">5.0</span>
+          <span style="color:var(--grey); font-size:0.85rem;">· Based on Google Reviews</span>
+        </div>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">J</div>
+            <div>
+              <div class="reviewer-name">Jean Bou</div>
+              <div class="reviewer-meta">Local Guide · 166 reviews</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Fantastic new halal butcher. Fresh meat, great service, and a wonderful addition to Three Kings. Highly recommend to everyone in the area."</p>
+          <div class="review-date">2 years ago</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">L</div>
+            <div>
+              <div class="reviewer-name">Layla Jea</div>
+              <div class="reviewer-meta">1 review</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"10/10 butcher! Love everything about this butcher, including the warm atmosphere and the fresh meat. Absolutely brilliant."</p>
+          <div class="review-date">8 months ago</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">A</div>
+            <div>
+              <div class="reviewer-name">Amitai Aharon</div>
+              <div class="reviewer-meta">12 reviews</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"This butchery is fantastic — meat is all fresh and at a really good price. The owner always greets me with a smiley face. Not going to buy my meats anywhere else!"</p>
+          <div class="review-date">A year ago</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">A</div>
+            <div>
+              <div class="reviewer-name">Aleisha Mclean</div>
+              <div class="reviewer-meta">Local Guide · 43 reviews</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I just had the most exceptional butchery experience! The butcher went out of his way cutting me fresh to my size and preference. The shop was clean, organised and I felt very welcome."</p>
+          <div class="review-date">2 years ago</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">M</div>
+            <div>
+              <div class="reviewer-name">Mohammed Bilal</div>
+              <div class="reviewer-meta">Local Guide · 15 reviews</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was thoroughly impressed with the quality of the meat. Fresh, tender, and well-prepared — it made a big difference in the meals I cooked. Great staff too."</p>
+          <div class="review-date">A year ago</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">S</div>
+            <div>
+              <div class="reviewer-name">Siddiq Sidiyot</div>
+              <div class="reviewer-meta">6 reviews</div>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Meat is always fresh! Best butcher in Auckland."</p>
+          <div class="review-date">10 months ago</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== SHOP PAGE ===== -->
+<div id="page-shop" class="page">
+  <div class="shop-header">
+    <div class="container">
+      <div class="section-label" style="color:#e87c73">Browse</div>
+      <h1>Our Products</h1>
+      <p>Fresh cuts — beef, lamb, chicken, marinated, deli &amp; frozen.</p>
+    </div>
+  </div>
+  <div class="torn-divider" style="background:#1a1a1a;">
+    <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 L0,20 L27,30 L54,12 L81,26 L109,8 L136,22 L163,34 L191,14 L218,28 L246,6 L273,20 L300,32 L328,10 L355,24 L382,4 L410,18 L437,30 L465,8 L492,22 L519,34 L547,12 L574,26 L601,6 L629,20 L656,32 L683,10 L711,24 L738,4 L765,18 L793,30 L820,8 L847,22 L875,34 L902,12 L929,26 L957,6 L984,20 L1011,32 L1039,10 L1066,24 L1093,4 L1121,18 L1148,30 L1175,12 L1200,22 L1200,45 Z" fill="#F5F0E8"/>
+    </svg>
+  </div>
+  <div class="shop-body">
+    <div class="shop-layout">
+      <aside class="filters-sidebar">
+        <div class="filters-title">Filter By</div>
+        <div class="filter-group">
+          <div class="filter-group-title">Category</div>
+          <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
+          <button class="filter-btn" onclick="filterProducts('Beef', this)">🐄 Beef</button>
+          <button class="filter-btn" onclick="filterProducts('Lamb', this)">🐑 Lamb</button>
+          <button class="filter-btn" onclick="filterProducts('Chicken', this)">🍗 Chicken</button>
+          <button class="filter-btn" onclick="filterProducts('Marinated', this)">🌿 Marinated</button>
+          <button class="filter-btn" onclick="filterProducts('Deli', this)">🌭 Deli</button>
+          <button class="filter-btn" onclick="filterProducts('Frozen', this)">❄️ Frozen</button>
+        </div>
+      </aside>
+      <div class="shop-main">
+        <div class="shop-toolbar">
+          <div class="results-count" id="results-count">Showing 0 products</div>
+          <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search products…" oninput="searchProducts()" />
+            <button>🔍</button>
+          </div>
+        </div>
+        <div class="product-grid" id="shop-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCT DETAIL PAGE ===== -->
+<div id="page-product" class="page">
+  <div class="product-detail">
+    <div class="product-detail-inner">
+      <div>
+        <div class="product-detail-img" id="pd-img">🥩</div>
+      </div>
+      <div class="product-detail-info">
+        <div class="breadcrumb" onclick="showPage('shop')">← <span>Back to Shop</span></div>
+        <div class="product-detail-category" id="pd-category"></div>
+        <h1 class="product-detail-name" id="pd-name"></h1>
+        <div class="product-detail-price" id="pd-price"></div>
+        <div class="product-detail-weight" id="pd-weight"></div>
+        <p class="product-detail-desc" id="pd-desc"></p>
+        <div class="qty-control">
+          <label>Quantity</label>
+          <div class="qty-input">
+            <button onclick="changeDetailQty(-1)">−</button>
+            <span id="detail-qty">1</span>
+            <button onclick="changeDetailQty(1)">+</button>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" id="pd-add-btn" onclick="addDetailToCart()">Add to Cart</button>
+        <p style="font-size:0.8rem; color:var(--grey); margin-top:0.75rem; text-align:center;">🏪 In-store collection only · Secure payment via Stripe</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CART PAGE ===== -->
+<div id="page-cart" class="page">
+  <div class="cart-page">
+    <div style="max-width:1000px; margin:0 auto;">
+      <h1>Your Cart</h1>
+      <p style="color:var(--grey); font-size:0.9rem; margin-bottom:1.5rem;">Review your order before checkout.</p>
+    </div>
+    <div class="cart-layout" id="cart-layout">
+      <div>
+        <div class="collection-notice">⚠️ All orders are for in-store collection only. We do not offer delivery.</div>
+        <div id="cart-items"></div>
+      </div>
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-line"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+        <div class="summary-line"><span>Collection</span><span style="color:#27ae60; font-weight:600;">Free</span></div>
+        <div class="summary-line total"><span>Total</span><span id="cart-total">$0.00</span></div>
+        <div class="pickup-info">
+          <strong>📍 Collection Address</strong>
+          Three Kings Butchery<br/>
+          Three Kings, Auckland<br/>
+          Bring your order number when collecting.
+        </div>
+        <button class="btn btn-primary btn-full" onclick="proceedToCheckout()" id="checkout-btn">Proceed to Checkout →</button>
+        <button class="btn btn-outline-red btn-full" onclick="showPage('shop')" style="margin-top:0.75rem;">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHECKOUT / CONFIRMATION PAGE ===== -->
+<div id="page-confirm" class="page">
+  <div class="confirm-page">
+    <div class="confirm-icon">✅</div>
+    <h1>Order Confirmed!</h1>
+    <p>Thank you for your order. A confirmation email has been sent to your inbox.</p>
+    <div class="confirm-box">
+      <h3>Order Details</h3>
+      <div class="confirm-row"><span>Order Number</span><strong id="confirm-order-num">#TKB-0001</strong></div>
+      <div class="confirm-row"><span>Status</span><strong style="color:#27ae60">Confirmed — Ready to Collect</strong></div>
+      <div class="confirm-row"><span>Collection</span><strong>Three Kings Butchery, Auckland</strong></div>
+      <div class="confirm-row"><span>Hours</span><strong>Mon–Sat 7am–6pm · Sun 8am–4pm</strong></div>
+    </div>
+    <div class="confirm-box">
+      <h3>What to Bring</h3>
+      <p style="font-size:0.9rem; color:var(--grey); line-height:1.6;">Please bring your <strong>order number</strong> (#<span id="confirm-order-num2"></span>) when you collect. Our team will have your order ready and packaged. If you need to change your collection time, please call us on <strong>(09) XXX XXXX</strong>.</p>
+    </div>
+    <button class="btn btn-primary" onclick="showPage('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div class="section-label" style="color:#e87c73">Our Story</div>
+    <h1>About Three Kings Butchery</h1>
+    <p>A family-owned halal butchery serving Auckland's Muslim community and food businesses with ethically sourced meat.</p>
+  </div>
+
+  <div class="torn-divider" style="background:#1a1a1a;">
+    <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 L0,22 L28,32 L55,14 L82,26 L108,8 L135,20 L162,30 L190,12 L218,24 L245,6 L272,18 L300,28 L328,10 L355,22 L382,34 L410,16 L437,8 L464,26 L491,14 L519,30 L546,4 L573,18 L600,28 L627,10 L654,22 L681,32 L709,8 L736,20 L763,30 L790,12 L817,24 L845,6 L872,18 L899,28 L926,14 L953,30 L980,10 L1008,22 L1035,34 L1062,16 L1089,8 L1116,26 L1143,14 L1170,28 L1200,18 L1200,45 Z" fill="#F5F0E8"/>
+    </svg>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="about-story">
+        <div class="about-story-img">🥩</div>
+        <div>
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">Proudly Serving Auckland</h2>
+          <p style="color:var(--grey); margin-bottom:1rem; line-height:1.7;">Three Kings Butchery was founded with a simple mission: to provide Auckland's halal community with access to the highest quality, ethically slaughtered meat at fair prices. Located in the heart of Three Kings, we serve families, restaurants, and food businesses who demand the best.</p>
+          <p style="color:var(--grey); margin-bottom:1.5rem; line-height:1.7;">Our butchers are experienced professionals who take pride in every cut. We source our meat from trusted New Zealand farms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title">What We Stand For</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">🌙</div><h4>Halal Integrity</h4><p>Certified halal from slaughter to sale. No compromises.</p></div>
+        <div class="value-card"><div class="value-icon">🤝</div><h4>Community First</h4><p>We exist to serve our community, not just sell to it.</p></div>
+        <div class="value-card"><div class="value-icon">⭐</div><h4>Quality Always</h4><p>Only quality NZ-sourced meat, freshly butchered daily.</p></div>
+        <div class="value-card"><div class="value-icon">🌿</div><h4>Ethical Sourcing</h4><p>Responsible farming and humane practices throughout.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="torn-divider" style="background:#F5F0E8;">
+    <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,45 L0,20 L30,30 L58,12 L86,24 L114,6 L142,22 L170,34 L198,14 L226,28 L254,8 L282,20 L310,32 L338,10 L366,24 L394,4 L422,18 L450,30 L478,8 L506,22 L534,34 L562,12 L590,26 L618,6 L646,20 L674,32 L702,10 L730,24 L758,4 L786,18 L814,30 L842,8 L870,22 L898,34 L926,12 L954,26 L982,6 L1010,20 L1038,32 L1066,10 L1094,24 L1122,4 L1150,18 L1178,30 L1200,22 L1200,45 Z" fill="#1A1A1A"/>
+    </svg>
+  </div>
+  <section class="section halal-section">
+    <div class="container">
+      <div class="halal-inner">
+        <div><div class="halal-badge-large"><div class="ar">حلال</div><div class="hl">HALAL</div></div></div>
+        <div class="halal-text">
+          <div class="section-label" style="color:#e87c73">Certification</div>
+          <h2 class="section-title">Our Commitment</h2>
+          <p>We source from trusted New Zealand suppliers and ensure every product meets the highest standards of quality and care, from farm to counter.</p>
+          <ul class="halal-points">
+            <li>Certified by a recognised NZ halal body</li>
+            <li>Islamic slaughter method (zabiha) strictly followed</li>
+            <li>Full chain-of-custody documentation maintained</li>
+            <li>Certificate available to view in-store at any time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div id="page-contact" class="page">
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom:3rem;">
+        <div class="section-label">Get In Touch</div>
+        <h1 class="section-title">Contact Us</h1>
+        <p class="section-sub" style="margin:0 auto;">We'd love to hear from you. Visit us in-store, give us a call, or send a message below.</p>
+      </div>
+      <div class="contact-layout">
+        <div>
+          <div class="contact-info">
+            <h3>Store Information</h3>
+            <div class="contact-detail">
+              <div class="contact-icon">📍</div>
+              <div class="contact-detail-text">
+                <h4>Address</h4>
+                <p>1G Hayr Road<br/>Three Kings, Auckland 1042<br/>New Zealand</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">📞</div>
+              <div class="contact-detail-text">
+                <h4>Phone</h4>
+                <p>(09) XXX XXXX</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">✉️</div>
+              <div class="contact-detail-text">
+                <h4>Email</h4>
+                <p>hello@threekingsbutchery.co.nz</p>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon">🕐</div>
+              <div class="contact-detail-text">
+                <h4>Store Hours</h4>
+                <table class="hours-table">
+                  <tr><td>Monday – Friday</td><td>7:00am – 6:00pm</td></tr>
+                  <tr><td>Saturday</td><td>7:00am – 6:00pm</td></tr>
+                  <tr><td>Sunday</td><td>8:00am – 4:00pm</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div style="border-radius:8px; overflow:hidden; height:450px; margin-top:1.5rem;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.166169973153!2d174.7523933765253!3d-36.91029117221608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d478062477371%3A0x38b961f5287d9e8c!2sThree%20kings%20butchery(%20Halal)!5e0!3m2!1sen!2snz!4v1781079326974!5m2!1sen!2snz" width="100%" height="450" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Three Kings Butchery location"></iframe>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:'Oswald',sans-serif; font-size:1.3rem; margin-bottom:1.5rem;">Send a Message</h3>
+          <form class="contact-form" onsubmit="submitContact(event)">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" required />
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" required />
+            <label>Phone (optional)</label>
+            <input type="tel" placeholder="021 XXX XXXX" />
+            <label>Subject</label>
+            <select>
+              <option>General Enquiry</option>
+              <option>Custom Cut Request</option>
+              <option>Wholesale / Restaurant Order</option>
+              <option>Order Issue</option>
+              <option>Certification</option>
+            </select>
+            <label>Message</label>
+            <textarea placeholder="How can we help?"></textarea>
+            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FAQ PAGE ===== -->
+<div id="page-faq" class="page">
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom:3rem;">
+        <div class="section-label">Help Centre</div>
+        <h1 class="section-title">Frequently Asked Questions</h1>
+        <p class="section-sub" style="margin:0 auto;">Everything you need to know about ordering from Three Kings Butchery.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How does click and collect work? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Simply browse our products online, add items to your cart, and complete your purchase securely using Stripe. You'll receive an order confirmation email with your order number. Bring that order number to our store and our team will have your order ready and packaged for you.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Do you offer delivery? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">At this stage we offer click-and-collect only. All orders must be collected from our store in Three Kings, Auckland. We do not currently offer courier or home delivery services.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Is all your meat halal? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Yes — every single product we sell is halal. Our certificate is available to view in-store at any time.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can I see your certificate? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Our certificate is displayed in-store and available on request. Please contact us if you need a copy for your records.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What payment methods do you accept? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">We accept all major credit and debit cards (Visa, Mastercard, American Express) as well as Apple Pay and Google Pay — all processed securely through Stripe. Payment is taken at the time of placing your online order.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How long will it take for my order to be ready? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Orders placed before 2pm are generally ready for same-day collection. Orders placed after 2pm will be ready the following business day. We'll notify you by email when your order is ready. If you need your order urgently, please give us a call.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can I request custom cuts? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Yes! While our website lists our standard range, our butchers are happy to discuss custom cuts. Please call or visit us in-store to talk through your requirements. Custom cut orders are not available online at this stage.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Do you cater for restaurants and food businesses? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Yes, we supply a number of restaurants and food businesses in the Auckland area. If you're interested in wholesale or bulk orders, please get in touch via the Contact page or call us directly to discuss your needs.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What if a product is out of stock? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">Products marked as out of stock on the website are temporarily unavailable. Check back regularly as we update our stock daily. You can also give us a call to ask when a specific product will be back in stock.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can I change or cancel my order? <span class="faq-chevron">▼</span></div>
+          <div class="faq-answer">If you need to change or cancel your order, please contact us as soon as possible by phone. We'll do our best to accommodate changes, but please note that once an order has been prepared we may not be able to cancel it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Torn: reviews → footer -->
+<div class="torn-divider" style="background:#F5F0E8;">
+  <svg viewBox="0 0 1200 45" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,45 L0,20 L30,30 L58,12 L86,24 L114,6 L142,22 L170,34 L198,14 L226,28 L254,8 L282,20 L310,32 L338,10 L366,24 L394,4 L422,18 L450,30 L478,8 L506,22 L534,34 L562,12 L590,26 L618,6 L646,20 L674,32 L702,10 L730,24 L758,4 L786,18 L814,30 L842,8 L870,22 L898,34 L926,12 L954,26 L982,6 L1010,20 L1038,32 L1066,10 L1094,24 L1122,4 L1150,18 L1178,30 L1200,22 L1200,45 Z" fill="#1A1A1A"/>
+  </svg>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <div class="footer-logo-badge">حلال</div>
+        <div class="footer-logo-text">
+          <div class="name">THREE KINGS BUTCHERY</div>
+          <div class="tag">Three Kings, Auckland</div>
+        </div>
+      </div>
+      <p>Auckland's halal butchery, serving the community with quality meat and honest service.</p>
+      <div class="halal-cert-badge">🌙 Halal Certified — New Zealand</div>
+      <div style="border-radius:8px; overflow:hidden; margin-top:1.25rem; line-height:0;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.166169973153!2d174.7523933765253!3d-36.91029117221608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d0d478062477371%3A0x38b961f5287d9e8c!2sThree%20kings%20butchery(%20Halal)!5e0!3m2!1sen!2snz!4v1781079326974!5m2!1sen!2snz" width="100%" height="220" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Three Kings Butchery location"></iframe>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a onclick="showPage('shop')">Shop</a></li>
+        <li><a onclick="showPage('about')">About Us</a></li>
+        <li><a onclick="showPage('contact')">Contact</a></li>
+        <li><a onclick="showPage('faq')">FAQ</a></li>
+        <li><a onclick="showPage('cart')">Cart</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a onclick="filterAndShow('Beef')">Beef</a></li>
+        <li><a onclick="filterAndShow('Lamb')">Lamb</a></li>
+        <li><a onclick="filterAndShow('Chicken')">Chicken</a></li>
+        <li><a onclick="filterAndShow('Marinated')">Marinated</a></li>
+        <li><a onclick="filterAndShow('Deli')">Deli</a></li>
+        <li><a onclick="filterAndShow('Frozen')">Frozen</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Store Hours</h4>
+      <div class="footer-hours">
+        <div><span class="day">Mon – Fri</span></div>
+        <div>7:00am – 6:00pm</div>
+        <div><span class="day">Saturday</span></div>
+        <div>7:00am – 6:00pm</div>
+        <div><span class="day">Sunday</span></div>
+        <div>8:00am – 4:00pm</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span>© 2026 Three Kings Butchery. All rights reserved. Three Kings, Auckland, New Zealand.</span>
+      <div class="social-links">
+        <div class="social-link" title="Facebook">f</div>
+        <div class="social-link" title="Instagram">📷</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- WhatsApp -->
+<a class="whatsapp-btn" href="https://wa.me/6496240714" target="_blank" rel="noopener" title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+  // ===== DATA =====
+  const products = [
+    { id: 1,  name: 'Beef Mince',              category: 'Beef',      emoji: '🥩', price: 16.99, unit: '/kg',    weight: 'Per kg — sold in 500g packs',    desc: 'Fresh, lean beef mince from quality NZ cattle. Perfect for bolognese, burgers, kebabs, and more.' },
+    { id: 2,  name: 'Ribeye Steak',            category: 'Beef',      emoji: '🥩', price: 39.99, unit: '/kg',    weight: 'Per kg — cut to order',           desc: 'Rich bone-in ribeye with exceptional marbling. Best grilled or pan-seared to medium-rare.' },
+    { id: 3,  name: 'T-Bone Steak',            category: 'Beef',      emoji: '🥩', price: 34.99, unit: '/kg',    weight: 'Per kg — approx. 400–600g each', desc: 'Classic T-bone steak — a generous cut featuring both sirloin and fillet. A crowd favourite.' },
+    { id: 4,  name: 'Beef Short Ribs',         category: 'Beef',      emoji: '🍖', price: 22.99, unit: '/kg',    weight: 'Per kg — sold in approx. 1kg packs', desc: 'Slow-cook beef short ribs for rich, fall-off-the-bone flavour. Ideal for braises and BBQ.' },
+    { id: 5,  name: 'Beef Brisket',            category: 'Beef',      emoji: '🥩', price: 19.99, unit: '/kg',    weight: 'Per kg — whole or half',          desc: 'Marbled brisket, perfect for low-and-slow smoking or braising. Rich, beefy flavour.' },
+    { id: 6,  name: 'Lamb Shoulder Chops',     category: 'Lamb',      emoji: '🍖', price: 24.99, unit: '/kg',    weight: 'Per kg — approx. 3–4 chops',     desc: 'Tender lamb shoulder chops with great flavour. Perfect for grilling, braising, or a classic chop fry.' },
+    { id: 7,  name: 'Rack of Lamb',            category: 'Lamb',      emoji: '🍖', price: 49.99, unit: '/kg',    weight: 'Per kg — French trimmed',         desc: 'Elegant French-trimmed rack of lamb. Roast at high heat with garlic, rosemary, and mustard.' },
+    { id: 8,  name: 'Lamb Leg (Bone-In)',      category: 'Lamb',      emoji: '🍖', price: 22.99, unit: '/kg',    weight: 'Per kg — whole legs 1.8–2.5kg',  desc: 'Classic bone-in lamb leg, slow roasted to perfection. A centrepiece for any family meal.' },
+    { id: 9,  name: 'Lamb Mince',              category: 'Lamb',      emoji: '🥩', price: 18.99, unit: '/kg',    weight: 'Per kg — sold in 500g packs',    desc: 'Freshly ground lamb mince. Great for kofta, shepherd\'s pie, and Middle Eastern dishes.' },
+    { id: 10, name: 'Whole Chicken',           category: 'Chicken',   emoji: '🍗', price: 11.99, unit: '/each',  weight: 'Per bird — approx. 1.4–1.8kg',  desc: 'Fresh, whole halal chicken. Roast, spatchcock, or use for a whole pot of broth.' },
+    { id: 11, name: 'Chicken Thighs',          category: 'Chicken',   emoji: '🍗', price: 13.99, unit: '/kg',    weight: 'Per kg — bone-in, skin-on',      desc: 'Juicy bone-in chicken thighs. The most flavourful cut, ideal for curries, braises, and grilling.' },
+    { id: 12, name: 'Chicken Breast',          category: 'Chicken',   emoji: '🍗', price: 17.99, unit: '/kg',    weight: 'Per kg — skinless fillets',       desc: 'Lean, skinless chicken breast fillets. Versatile for stir-fry, grilling, or poaching.' },
+    { id: 13, name: 'Chicken Wings',           category: 'Chicken',   emoji: '🍗', price: 10.99, unit: '/kg',    weight: 'Per kg — approx. 8–10 wings',    desc: 'Classic chicken wings. Marinate and grill, or deep fry for a crowd-pleasing snack.' },
+    { id: 14, name: 'Marinated Lamb Skewers', category: 'Marinated', emoji: '🍢', price: 28.99, unit: '/kg',    weight: 'Per kg — 4 skewers per 500g',    desc: 'House-marinated lamb kofta skewers with spices, herbs, and a hint of chilli. Ready to grill.' },
+    { id: 15, name: 'Marinated Chicken Wings',category: 'Marinated', emoji: '🍗', price: 15.99, unit: '/kg',    weight: 'Per kg — marinated overnight',   desc: 'Chicken wings marinated in our signature blend of garlic, lemon, and spices. Just grill and serve.' },
+    { id: 16, name: 'Marinated Lamb Chops',   category: 'Marinated', emoji: '🍖', price: 32.99, unit: '/kg',    weight: 'Per kg — marinated in-store',    desc: 'Succulent lamb loin chops in a fragrant Middle Eastern spice marinade. BBQ-ready.' },
+    { id: 17, name: 'Beef Sausages',           category: 'Deli',      emoji: '🌭', price: 18.99, unit: '/kg',    weight: 'Per kg — approx. 6 sausages',    desc: 'Classic thick beef sausages — great on the BBQ or pan-fried. No pork fillers.' },
+    { id: 18, name: 'Lamb Merguez',            category: 'Deli',      emoji: '🌭', price: 22.99, unit: '/kg',    weight: 'Per kg — thin spiced sausages',  desc: 'Spiced North African lamb merguez with harissa and cumin. Grill on high heat for best results.' },
+    { id: 19, name: 'Frozen Lamb Shanks',      category: 'Frozen',    emoji: '❄️', price: 19.99, unit: '/each',  weight: 'Per shank — approx. 700–900g',  desc: 'Individually frozen lamb shanks — perfect for slow-cooked casseroles and tagines.' },
+    { id: 20, name: 'Frozen Whole Chicken',    category: 'Frozen',    emoji: '❄️', price: 9.99,  unit: '/each',  weight: 'Per bird — frozen, approx. 1.6kg', desc: 'Frozen whole halal chicken. Thaw overnight and cook as desired.' },
+  ];
+
+  let cart = [];
+  let currentFilter = 'all';
+  let currentProduct = null;
+  let detailQty = 1;
+  let orderNum = 1001;
+
+  // ===== NAVIGATION =====
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (page === 'shop') renderShopGrid(currentFilter);
+    if (page === 'cart') renderCart();
+  }
+
+  function toggleMobileNav() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
+  // ===== PRODUCT RENDERING =====
+  function productCard(p, onclick_fn) {
+    return `
+      <div class="product-card" onclick="${onclick_fn}">
+        <div class="product-img">
+          <span style="font-size:4rem">${p.emoji}</span>
+          <div class="halal-dot">Halal</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">${p.category}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-weight">${p.weight}</div>
+          <div class="product-footer">
+            <div class="product-price">$${p.price.toFixed(2)}<span class="unit"> ${p.unit}</span></div>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">+ Add</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderFeatured() {
+    const featured = [products[0], products[5], products[9], products[13]];
+    document.getElementById('featured-grid').innerHTML = featured.map(p => productCard(p, `openProduct(${p.id})`)).join('');
+  }
+
+  function renderShopGrid(filter) {
+    const search = (document.getElementById('search-input')?.value || '').toLowerCase();
+    let filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+    if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search));
+    document.getElementById('results-count').textContent = `Showing ${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+    document.getElementById('shop-grid').innerHTML = filtered.map(p => productCard(p, `openProduct(${p.id})`)).join('');
+  }
+
+  function filterProducts(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderShopGrid(cat);
+  }
+
+  function searchProducts() {
+    renderShopGrid(currentFilter);
+  }
+
+  function filterAndShow(cat) {
+    showPage('shop');
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.includes(cat));
+    });
+    renderShopGrid(cat);
+  }
+
+  // ===== PRODUCT DETAIL =====
+  function openProduct(id) {
+    currentProduct = products.find(p => p.id === id);
+    detailQty = 1;
+    document.getElementById('pd-img').textContent = currentProduct.emoji;
+    document.getElementById('pd-category').textContent = currentProduct.category;
+    document.getElementById('pd-name').textContent = currentProduct.name;
+    document.getElementById('pd-price').innerHTML = `$${currentProduct.price.toFixed(2)} <span style="font-size:1rem;color:var(--grey);font-family:'Inter',sans-serif;font-weight:400">${currentProduct.unit}</span>`;
+    document.getElementById('pd-weight').textContent = currentProduct.weight;
+    document.getElementById('pd-desc').textContent = currentProduct.desc;
+    document.getElementById('detail-qty').textContent = detailQty;
+    showPage('product');
+  }
+
+  function changeDetailQty(delta) {
+    detailQty = Math.max(1, detailQty + delta);
+    document.getElementById('detail-qty').textContent = detailQty;
+  }
+
+  function addDetailToCart() {
+    for (let i = 0; i < detailQty; i++) addToCart(currentProduct.id, false);
+    showToast(`✓ ${detailQty}× ${currentProduct.name} added to cart`);
+    updateCartCount();
+  }
+
+  // ===== CART =====
+  function addToCart(id, notify = true) {
+    const p = products.find(x => x.id === id);
+    const existing = cart.find(x => x.id === id);
+    if (existing) existing.qty++;
+    else cart.push({ ...p, qty: 1 });
+    updateCartCount();
+    if (notify) showToast(`✓ ${p.name} added to cart`);
+  }
+
+  function updateCartCount() {
+    const total = cart.reduce((s, x) => s + x.qty, 0);
+    document.getElementById('cart-count').textContent = total;
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cart-items');
+    if (cart.length === 0) {
+      container.innerHTML = `<div class="empty-cart"><div class="icon">🛒</div><h3>Your cart is empty</h3><p>Browse our products and add some items.</p><br/><button class="btn btn-primary" onclick="showPage('shop')">Shop Now</button></div>`;
+      document.getElementById('cart-subtotal').textContent = '$0.00';
+      document.getElementById('cart-total').textContent = '$0.00';
+      document.getElementById('checkout-btn').disabled = true;
+      document.getElementById('checkout-btn').style.opacity = '0.5';
+      return;
+    }
+    document.getElementById('checkout-btn').disabled = false;
+    document.getElementById('checkout-btn').style.opacity = '1';
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-img">${item.emoji}</div>
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-weight">${item.weight}</div>
+          <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+        </div>
+        <div class="cart-item-actions">
+          <div class="item-qty">
+            <button onclick="changeCartQty(${item.id}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeCartQty(${item.id}, 1)">+</button>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
+        </div>
+      </div>`).join('');
+    const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
+    document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('cart-total').textContent = '$' + subtotal.toFixed(2);
+  }
+
+  function changeCartQty(id, delta) {
+    const item = cart.find(x => x.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+    updateCartCount();
+    renderCart();
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(x => x.id !== id);
+    updateCartCount();
+    renderCart();
+  }
+
+  function proceedToCheckout() {
+    if (cart.length === 0) return;
+    const num = 'TKB-' + orderNum++;
+    document.getElementById('confirm-order-num').textContent = '#' + num;
+    document.getElementById('confirm-order-num2').textContent = num;
+    cart = [];
+    updateCartCount();
+    showPage('confirm');
+  }
+
+  // ===== FAQ =====
+  function toggleFaq(el) {
+    const item = el.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  // ===== CONTACT =====
+  function submitContact(e) {
+    e.preventDefault();
+    showToast('✓ Message sent! We\'ll be in touch shortly.');
+    e.target.reset();
+  }
+
+  // ===== TOAST =====
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast success show';
+    setTimeout(() => t.className = 'toast', 3000);
+  }
+
+  // ===== INIT =====
+  renderFeatured();
+  renderShopGrid('all');
+</script>
+</body>
+</html>
