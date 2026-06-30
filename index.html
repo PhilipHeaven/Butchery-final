@@ -104,15 +104,25 @@
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
+      display: flex;
       align-items: center;
-      gap: 2rem;
       min-height: 80px;
     }
+    .header-inner .logo { flex: 1; }
+    .header-inner .main-nav { flex: 0 0 auto; }
+    .header-inner .header-actions { flex: 1; justify-content: flex-end; }
 
-    .logo { display: flex; align-items: center; cursor: pointer; flex-shrink: 0; }
-    .logo img { height: 72px; width: auto; display: block; }
+    .logo { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; flex-shrink: 0; }
+    .logo-badge {
+      height: 68px; width: 68px; border-radius: 50%; display: block;
+      box-shadow: 0 2px 12px rgba(196,48,42,0.4);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .logo:hover .logo-badge { box-shadow: 0 0 18px rgba(196,48,42,0.6); transform: scale(1.04); }
+    .logo-word { display: flex; flex-direction: column; line-height: 1.05; }
+    .logo-word .lw-top { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: 0.02em; color: var(--warm-white); }
+    .logo-word .lw-bottom { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: 0.04em; color: var(--red); }
+    @media (max-width: 480px) { .logo-word { display: none; } }
 
     .main-nav {
       display: flex;
@@ -556,7 +566,10 @@
       grid-template-columns: 2fr 1fr 1.25fr;
       gap: 2.5rem;
     }
-    .footer-logo-img { height: 56px; width: auto; margin-bottom: 0.75rem; filter: brightness(0.95); }
+    .footer-logo-img { height: 72px; width: 72px; border-radius: 50%; margin-bottom: 0.85rem; box-shadow: 0 2px 14px rgba(196,48,42,0.35); }
+    .footer-logo-row { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem; }
+    .footer-logo-row .logo-word .lw-top, .footer-logo-row .logo-word .lw-bottom { font-size: 1.25rem; }
+    .footer-logo-row .logo-badge { margin-bottom: 0; }
     .footer-brand p { color: rgba(240,232,216,0.55); font-size: 0.825rem; line-height: 1.6; margin-bottom: 0.875rem; }
     .footer-contact-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
     .footer-contact-row span { font-size: 0.875rem; color: rgba(240,232,216,0.55); }
@@ -1181,7 +1194,8 @@
 <header class="site-header" id="site-header">
   <div class="header-inner">
     <div class="logo" onclick="showPage('home')" role="button" aria-label="Three Kings Butchery — Home">
-      <img src="logo.jpg" alt="Three Kings Butchery" />
+      <img src="halal_logo_clean.png" alt="" aria-hidden="true" class="logo-badge" />
+      <span class="logo-word"><span class="lw-top">THREE KINGS</span><span class="lw-bottom">BUTCHERY</span></span>
     </div>
     <nav class="main-nav" aria-label="Main navigation">
       <a onclick="showPage('home')">Home</a>
@@ -1789,7 +1803,10 @@
 <footer>
   <div class="footer-main">
     <div class="footer-brand">
-      <img src="logo.jpg" alt="Three Kings Butchery" class="footer-logo-img" />
+      <div class="footer-logo-row">
+        <img src="halal_logo_clean.png" alt="" aria-hidden="true" class="logo-badge footer-logo-img" />
+        <span class="logo-word"><span class="lw-top">THREE KINGS</span><span class="lw-bottom">BUTCHERY</span></span>
+      </div>
       <p>Auckland's halal butchery, serving the community with quality meat and honest service since day one.</p>
       <div class="footer-contact-row">
         <span>&#128222;</span>
@@ -1914,7 +1931,7 @@
   }
 
   function renderFeatured() {
-    const featured = [products[1], products[3], products[5], products[7], products[9], products[11], products[13], products[16]];
+    const featured = [products[1], products[3], products[5], products[6], products[7], products[9], products[11], products[13], products[14], products[16]];
     document.getElementById('featured-grid').innerHTML = featured.map(p => productCard(p, `openProduct(${p.id})`)).join('');
   }
 
