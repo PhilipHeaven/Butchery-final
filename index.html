@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Three Kings Butchery — Halal Meat Auckland</title>
-  <meta name="description" content="Auckland's halal butchery. Browse fresh beef, lamb, chicken and more. Order online for in-store collection at Three Kings Butchery." />
+  <title>Three Kings Butchery — Fresh Meat Auckland</title>
+  <meta name="description" content="Auckland's butchery. Browse fresh beef, lamb, chicken and more. Order online for in-store collection at Three Kings Butchery." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +28,7 @@
       --border:       #DDD4C2;
       --border-dark:  #3A3630;
       --star:         #C8960C;
-      --font-display: 'Playfair Display', Georgia, serif;
+      --font-display: 'Oswald', -apple-system, "Segoe UI", sans-serif;
       --font-body:    'Inter', -apple-system, system-ui, sans-serif;
       --radius:       8px;
       --shadow-sm:    0 1px 4px rgba(0,0,0,0.07);
@@ -95,7 +95,7 @@
       position: static;
       z-index: 1000;
       background: var(--charcoal);
-      border-bottom: 2px solid var(--red);
+      border-bottom: none;
       transition: box-shadow 0.2s;
     }
     .site-header.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.1); }
@@ -106,7 +106,7 @@
       padding: 0 1.5rem;
       display: flex;
       align-items: center;
-      min-height: 80px;
+      min-height: 68px;
     }
     .header-inner .logo { flex: 1; }
     .header-inner .main-nav { flex: 0 0 auto; }
@@ -114,14 +114,14 @@
 
     .logo { display: flex; align-items: center; gap: 0.7rem; cursor: pointer; flex-shrink: 0; }
     .logo-badge {
-      height: 68px; width: 68px; border-radius: 50%; display: block;
+      height: 54px; width: 54px; border-radius: 50%; display: block;
       box-shadow: 0 2px 12px rgba(196,48,42,0.4);
       transition: box-shadow 0.2s, transform 0.2s;
     }
     .logo:hover .logo-badge { box-shadow: 0 0 18px rgba(196,48,42,0.6); transform: scale(1.04); }
     .logo-word { display: flex; flex-direction: column; line-height: 1.05; }
-    .logo-word .lw-top { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: 0.02em; color: var(--warm-white); }
-    .logo-word .lw-bottom { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: 0.04em; color: var(--red); }
+    .logo-word .lw-top { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; color: var(--warm-white); }
+    .logo-word .lw-bottom { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--red); }
     @media (max-width: 480px) { .logo-word { display: none; } }
 
     .main-nav {
@@ -176,7 +176,7 @@
       display: none;
       background: none;
       border: none;
-      color: var(--ink);
+      color: var(--warm-white);
       font-size: 1.4rem;
       min-width: 44px;
       min-height: 44px;
@@ -490,7 +490,8 @@
     }
     .product-weight { display: none; }
     .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-    .product-price {
+    .product-price { display: none; }
+    .product-price-hidden {
       font-family: var(--font-body);
       font-size: 1.2rem;
       font-weight: 700;
@@ -878,7 +879,7 @@
     .product-detail-img img { width: 100%; height: 100%; object-fit: cover; }
     .product-detail-category { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
     .product-detail-name { font-family: var(--font-display); font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; }
-    .product-detail-price { font-size: 2rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+    .product-detail-price { display: none; }
     .product-detail-weight { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
     .product-detail-desc { color: var(--ink-mid); line-height: 1.75; margin-bottom: 1.75rem; font-size: 0.95rem; }
     .qty-control { margin-bottom: 1.25rem; }
@@ -930,7 +931,7 @@
     .cart-item-info { flex: 1; }
     .cart-item-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
     .cart-item-weight { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.25rem; }
-    .cart-item-price { font-weight: 700; color: var(--ink); }
+    .cart-item-price { display: none; }
     .cart-item-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 0.625rem; }
     .item-qty { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--border); border-radius: 4px; overflow: hidden; }
     .item-qty button { background: var(--paper-alt); border: none; width: 32px; height: 32px; font-size: 1rem; cursor: pointer; transition: background 0.15s; }
@@ -1160,9 +1161,9 @@
       .halal-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
 
-    @media (max-width: 640px) {
-      .main-nav { display: none; }
-      .hamburger { display: flex; }
+    @media (max-width: 768px) {
+      .main-nav { display: none !important; }
+      .hamburger { display: flex !important; }
       .header-inner { grid-template-columns: auto 1fr auto; }
 
       .hero h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
@@ -1205,17 +1206,11 @@
       <a onclick="showPage('faq')">FAQ</a>
     </nav>
     <div class="header-actions">
-      <button class="cart-btn" onclick="showPage('cart')" aria-label="View cart">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        Cart <span class="cart-count" id="cart-count">0</span>
-      </button>
       <button class="hamburger" onclick="toggleMobileNav()" aria-label="Open menu">&#9776;</button>
     </div>
   </div>
 </header>
 
-<!-- Decorative bar under header -->
-<div style="background:var(--charcoal); height:36px; border-bottom:1px solid var(--border-dark);"></div>
 
 <!-- Mobile nav -->
 <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Mobile navigation">
@@ -1224,7 +1219,6 @@
   <a onclick="showPage('about'); toggleMobileNav()">About Us</a>
   <a onclick="showPage('contact'); toggleMobileNav()">Contact</a>
   <a onclick="showPage('faq'); toggleMobileNav()">FAQ</a>
-  <a onclick="showPage('cart'); toggleMobileNav()">Cart</a>
 </div>
 
 <!-- ===== HOME PAGE ===== -->
@@ -1232,11 +1226,11 @@
 
   <!-- Hero -->
   <section class="hero">
-    <img class="hero-bg" src="hero 3.jpg" alt="Three Kings Butchery fresh halal meats" />
+    <img class="hero-bg" src="hero 3.jpg" alt="Three Kings Butchery fresh meats" />
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Halal &middot; Three Kings, Auckland &middot; Fresh Daily</p>
-      <h1>Fresh <em>Halal</em><br>Meats</h1>
+      <p class="hero-eyebrow">Three Kings, Auckland &middot; Fresh Daily</p>
+      <h1>Fresh <em>Quality</em><br>Meats</h1>
       <p class="hero-sub">Quality cuts, ethically sourced. Order online and collect in-store at Three Kings.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="showPage('shop')">Shop Now</button>
@@ -1246,9 +1240,12 @@
   </section>
 
   <!-- Knife divider: hero → featured -->
-  <div class="knife-divider" style="background:var(--charcoal); padding: 2.25rem 2rem 0;">
+  <div class="knife-divider" style="background:var(--charcoal); padding: 1rem 2rem 1rem;">
     <div class="knife-divider-line dark"></div>
-    <img src="final cropped.png" alt="" aria-hidden="true" style="width:160px; height:auto; filter:saturate(1.6) brightness(1.3) drop-shadow(0 0 10px rgba(196,48,42,0.5)); opacity:0.8; flex-shrink:0;">
+    <div style="position:relative;width:125px;flex-shrink:0;">
+      <div style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(196,48,42,0.6) 0%,transparent 70%);pointer-events:none;"></div>
+      <img src="knives_hd.png" alt="" aria-hidden="true" style="width:125px;height:auto;display:block;position:relative;">
+    </div>
     <div class="knife-divider-line dark"></div>
   </div>
 
@@ -1292,7 +1289,7 @@
             </div>
           </div>
           <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="review-text">"Fantastic new halal butcher. Fresh meat, great service, and a wonderful addition to Three Kings. Highly recommend to everyone in the area."</p>
+          <p class="review-text">"Fantastic new butcher. Fresh meat, great service, and a wonderful addition to Three Kings. Highly recommend to everyone in the area."</p>
           <div class="review-date">2 years ago</div>
         </div>
 
@@ -1371,7 +1368,7 @@
     <div class="container" style="max-width:720px; position:relative; z-index:1;">
       <div class="section-eyebrow" style="color:rgba(228,80,72,0.9); margin-bottom:1rem; letter-spacing:0.18em;">Ready to Order?</div>
       <h2 style="font-family:var(--font-display); font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:var(--warm-white); margin-bottom:1rem; line-height:1.05;">Fresh cuts, <em style="font-style:normal; color:#E05048;">cut for you.</em></h2>
-      <p style="color:rgba(240,232,216,0.55); font-size:1rem; margin-bottom:2rem; line-height:1.75; max-width:500px; margin-left:auto; margin-right:auto;">Browse our full range of halal beef, lamb, chicken and more — or give us a call.</p>
+      <p style="color:rgba(240,232,216,0.55); font-size:1rem; margin-bottom:2rem; line-height:1.75; max-width:500px; margin-left:auto; margin-right:auto;">Browse our full range of beef, lamb, chicken and more — or give us a call.</p>
       <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
         <button class="btn btn-primary" style="padding:0.9rem 2rem; font-size:0.95rem;" onclick="showPage('shop')">Shop All Cuts &rarr;</button>
         <a href="tel:+6499609777" class="btn btn-outline" style="padding:0.9rem 2rem; font-size:0.95rem;">Call Us Now</a>
@@ -1388,10 +1385,10 @@
     <div class="page-banner-content container">
       <div class="section-eyebrow">Browse</div>
       <h1>Our <em>Cuts</em></h1>
-      <p>Fresh beef, lamb, chicken, marinated, deli &amp; frozen — all halal certified and sourced from trusted NZ farms.</p>
+      <p>Fresh beef, lamb, chicken, marinated, deli &amp; frozen — all ethically sourced from trusted NZ farms.</p>
       <div class="banner-meta">
         <div class="banner-stat"><div class="banner-stat-val">20+</div><div class="banner-stat-label">Products</div></div>
-        <div class="banner-stat"><div class="banner-stat-val">100%</div><div class="banner-stat-label">Halal</div></div>
+        <div class="banner-stat"><div class="banner-stat-val">100%</div><div class="banner-stat-label">Fresh</div></div>
         <div class="banner-stat"><div class="banner-stat-val">Daily</div><div class="banner-stat-label">Fresh</div></div>
       </div>
     </div>
@@ -1440,17 +1437,8 @@
         <div class="product-detail-price" id="pd-price"></div>
         <div class="product-detail-weight" id="pd-weight"></div>
         <p class="product-detail-desc" id="pd-desc"></p>
-        <div class="qty-control">
-          <label>Quantity</label>
-          <div class="qty-input">
-            <button onclick="changeDetailQty(-1)" aria-label="Decrease quantity">&#8722;</button>
-            <span id="detail-qty">1</span>
-            <button onclick="changeDetailQty(1)" aria-label="Increase quantity">&#43;</button>
-          </div>
-        </div>
-        <button class="btn btn-primary btn-full" id="pd-add-btn" onclick="addDetailToCart()">Add to Cart</button>
         <div class="trust-badges" style="margin-top:1rem;justify-content:center;">
-          <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Halal Certified</span>
+          <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NZ Sourced</span>
           <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NZ Sourced</span>
           <span class="trust-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> In-store Pickup</span>
         </div>
@@ -1460,43 +1448,6 @@
   </div>
 </div>
 
-<!-- ===== CART PAGE ===== -->
-<div id="page-cart" class="page">
-  <div class="page-banner">
-    <div class="page-banner-content container">
-      <div class="section-eyebrow">Checkout</div>
-      <h1>Your <em>Order</em></h1>
-      <p>Review your items, then proceed to checkout. All orders are for in-store collection.</p>
-    </div>
-  </div>
-  <div class="knife-divider" style="background:var(--paper); padding: 2rem 2rem 0;">
-    <div class="knife-divider-line light"></div>
-    <img src="final cropped.png" alt="" aria-hidden="true" style="width:48px; height:auto; filter:saturate(1.6) brightness(0.85); opacity:0.6; flex-shrink:0;">
-    <div class="knife-divider-line light"></div>
-  </div>
-  <div class="cart-page" style="padding-top:2rem;">
-    <div class="cart-layout" id="cart-layout">
-      <div>
-        <div class="collection-notice">&#9888;&#65039; All orders are for in-store collection only. We do not offer delivery.</div>
-        <div id="cart-items"></div>
-      </div>
-      <div class="order-summary">
-        <h3>Order Summary</h3>
-        <div class="summary-line"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
-        <div class="summary-line"><span>Collection</span><span style="color:#27ae60; font-weight:600">Free</span></div>
-        <div class="summary-line total"><span>Total</span><span id="cart-total">$0.00</span></div>
-        <div class="pickup-info">
-          <strong>&#128205; Collection Address</strong>
-          Three Kings Butchery<br/>
-          Three Kings, Auckland<br/>
-          Bring your order number when collecting.
-        </div>
-        <button class="btn btn-primary btn-full" onclick="proceedToCheckout()" id="checkout-btn">Proceed to Checkout &rarr;</button>
-        <button class="btn btn-outline-red btn-full" onclick="showPage('shop')" style="margin-top:0.625rem">Continue Shopping</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ===== CONFIRM PAGE ===== -->
 <div id="page-confirm" class="page">
@@ -1535,7 +1486,7 @@
     <div class="page-banner-content container">
       <div class="section-eyebrow">Our Story</div>
       <h1>About <em>Three Kings</em><br>Butchery</h1>
-      <p>A family-owned halal butchery serving Auckland's community with ethically sourced meat and honest service — from our counter to your kitchen.</p>
+      <p>A family-owned butchery serving Auckland's community with ethically sourced meat and honest service — from our counter to your kitchen.</p>
       <div class="banner-actions">
         <button class="btn btn-primary" onclick="showPage('shop')">Shop Now</button>
         <button class="btn btn-outline" onclick="showPage('contact')">Get in Touch</button>
@@ -1553,15 +1504,15 @@
     <div class="container">
       <div class="about-story">
         <div class="about-story-img" style="background:var(--paper-alt); border-radius:var(--radius); aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-          <img src="hero 3.jpg" alt="Fresh halal meats at Three Kings Butchery" style="width:100%;height:100%;object-fit:cover;" />
+          <img src="hero 3.jpg" alt="Fresh meats at Three Kings Butchery" style="width:100%;height:100%;object-fit:cover;" />
         </div>
         <div>
           <div class="section-eyebrow">Who We Are</div>
           <h2 class="section-title">Proudly Serving Auckland</h2>
-          <p style="color:var(--ink-mid);line-height:1.8;margin-bottom:1rem;font-size:0.95rem;">Three Kings Butchery was founded with a simple mission: to provide Auckland's halal community with access to the highest quality, ethically slaughtered meat at fair prices. Located in the heart of Three Kings, we serve families, restaurants, and food businesses who demand the best.</p>
+          <p style="color:var(--ink-mid);line-height:1.8;margin-bottom:1rem;font-size:0.95rem;">Three Kings Butchery was founded with a simple mission: to provide Auckland's community with access to the highest quality, ethically sourced meat at fair prices. Located in the heart of Three Kings, we serve families, restaurants, and food businesses who demand the best.</p>
           <p style="color:var(--ink-mid);line-height:1.8;margin-bottom:1.5rem;font-size:0.95rem;">Our butchers are experienced professionals who take pride in every cut. We source our meat from trusted New Zealand farms and ensure every product meets the highest standards of quality and care.</p>
           <div class="trust-badges">
-            <span class="trust-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Halal Certified</span>
+            <span class="trust-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NZ Sourced</span>
             <span class="trust-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> NZ Sourced</span>
             <span class="trust-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fresh Daily</span>
           </div>
@@ -1581,8 +1532,8 @@
           <div class="value-icon-circle">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h4>Halal Integrity</h4>
-          <p>Certified halal from slaughter to sale. No compromises, ever.</p>
+          <h4>Quality Integrity</h4>
+          <p>Ethically sourced from farm to counter. No compromises, ever.</p>
         </div>
         <div class="value-card">
           <div class="value-icon-circle">
@@ -1618,16 +1569,15 @@
   <div class="halal-section" style="padding-top:2.5rem;">
     <div class="container">
       <div class="halal-inner">
-        <div><div class="halal-badge-large"><div class="ar">&#1581;&#1604;&#1575;&#1604;</div><div class="hl">HALAL</div></div></div>
         <div class="halal-text">
-          <div class="section-eyebrow">Certification</div>
+          <div class="section-eyebrow">Our Standards</div>
           <h2 class="section-title">Our Commitment</h2>
           <p>We source from trusted New Zealand suppliers and ensure every product meets the highest standards of quality and care, from farm to counter.</p>
           <ul class="halal-points">
-            <li>Certified by a recognised NZ halal body</li>
-            <li>Islamic slaughter method (zabiha) strictly followed</li>
+            <li>Sourced from trusted NZ farms and suppliers</li>
             <li>Full chain-of-custody documentation maintained</li>
-            <li>Certificate available to view in-store at any time</li>
+            <li>Ethically raised animals, quality guaranteed</li>
+            <li>Fresh cuts prepared daily in-store</li>
           </ul>
         </div>
       </div>
@@ -1755,8 +1705,8 @@
           <div class="faq-answer">At this stage we offer click-and-collect only. All orders must be collected from our store in Three Kings, Auckland. We do not currently offer courier or home delivery.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-question" onclick="toggleFaq(this)">Is all your meat halal? <span class="faq-chevron">&#9660;</span></div>
-          <div class="faq-answer">Yes — every single product we sell is halal. Our certificate is available to view in-store at any time.</div>
+          <div class="faq-question" onclick="toggleFaq(this)">Where do you source your meat? <span class="faq-chevron">&#9660;</span></div>
+          <div class="faq-answer">All our meat is sourced from trusted New Zealand farms and suppliers. We maintain full chain-of-custody documentation and our team prepares fresh cuts daily in-store.</div>
         </div>
         <div class="faq-item">
           <div class="faq-question" onclick="toggleFaq(this)">Can I see your certificate? <span class="faq-chevron">&#9660;</span></div>
@@ -1807,7 +1757,7 @@
         <img src="halal_logo_clean.png" alt="" aria-hidden="true" class="logo-badge footer-logo-img" />
         <span class="logo-word"><span class="lw-top">THREE KINGS</span><span class="lw-bottom">BUTCHERY</span></span>
       </div>
-      <p>Auckland's halal butchery, serving the community with quality meat and honest service since day one.</p>
+      <p>Auckland's butchery, serving the community with quality meat and honest service since day one.</p>
       <div class="footer-contact-row">
         <span>&#128222;</span>
         <a href="tel:+6496240714">09 624 0714</a>
@@ -1869,7 +1819,7 @@
     { id: 7,  name: 'Rack of Lamb',            category: 'Lamb',      emoji: '🍖', img: 'https://images.unsplash.com/photo-1615937691194-97dbd3f3dc29?w=500&h=350&fit=crop&auto=format', price: 49.99, unit: '/kg',    weight: 'Per kg — French trimmed',         desc: 'Elegant French-trimmed rack of lamb. Roast at high heat with garlic, rosemary, and mustard.' },
     { id: 8,  name: 'Lamb Leg (Bone-In)',      category: 'Lamb',      emoji: '🍖', img: 'https://images.unsplash.com/photo-1611171711912-e3f4b5b6fd93?w=500&h=350&fit=crop&auto=format', price: 22.99, unit: '/kg',    weight: 'Per kg — whole legs 1.8–2.5kg',  desc: 'Classic bone-in lamb leg, slow roasted to perfection. A centrepiece for any family meal.' },
     { id: 9,  name: 'Lamb Mince',              category: 'Lamb',      emoji: '🥩', img: 'https://images.unsplash.com/photo-1608500218807-a4b23f34e0d3?w=500&h=350&fit=crop&auto=format', price: 18.99, unit: '/kg',    weight: 'Per kg — sold in 500g packs',    desc: 'Freshly ground lamb mince. Great for kofta, shepherd\'s pie, and Middle Eastern dishes.' },
-    { id: 10, name: 'Whole Chicken',           category: 'Chicken',   emoji: '🍗', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=350&fit=crop&auto=format', price: 11.99, unit: '/each',  weight: 'Per bird — approx. 1.4–1.8kg',  desc: 'Fresh, whole halal chicken. Roast, spatchcock, or use for a whole pot of broth.' },
+    { id: 10, name: 'Whole Chicken',           category: 'Chicken',   emoji: '🍗', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=350&fit=crop&auto=format', price: 11.99, unit: '/each',  weight: 'Per bird — approx. 1.4–1.8kg',  desc: 'Fresh, whole chicken. Roast, spatchcock, or use for a whole pot of broth.' },
     { id: 11, name: 'Chicken Thighs',          category: 'Chicken',   emoji: '🍗', img: 'https://images.unsplash.com/photo-1604503468590-9f600b5cb4df?w=500&h=350&fit=crop&auto=format', price: 13.99, unit: '/kg',    weight: 'Per kg — bone-in, skin-on',      desc: 'Juicy bone-in chicken thighs. The most flavourful cut, ideal for curries, braises, and grilling.' },
     { id: 12, name: 'Chicken Breast',          category: 'Chicken',   emoji: '🍗', img: 'https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?w=500&h=350&fit=crop&auto=format', price: 17.99, unit: '/kg',    weight: 'Per kg — skinless fillets',       desc: 'Lean, skinless chicken breast fillets. Versatile for stir-fry, grilling, or poaching.' },
     { id: 13, name: 'Chicken Wings',           category: 'Chicken',   emoji: '🍗', img: 'https://images.unsplash.com/photo-1567620905732-2d91a0cb1e7b?w=500&h=350&fit=crop&auto=format', price: 10.99, unit: '/kg',    weight: 'Per kg — approx. 8–10 wings',    desc: 'Classic chicken wings. Marinate and grill, or deep fry for a crowd-pleasing snack.' },
@@ -1879,14 +1829,11 @@
     { id: 17, name: 'Beef Sausages',           category: 'Deli',      emoji: '🌭', img: 'https://images.unsplash.com/photo-1560781290-7dc94c0f8f4f?w=500&h=350&fit=crop&auto=format', price: 18.99, unit: '/kg',    weight: 'Per kg — approx. 6 sausages',    desc: 'Classic thick beef sausages — great on the BBQ or pan-fried. No pork fillers.' },
     { id: 18, name: 'Lamb Merguez',            category: 'Deli',      emoji: '🌭', img: 'https://images.unsplash.com/photo-1625937286074-9b93a8d26f20?w=500&h=350&fit=crop&auto=format', price: 22.99, unit: '/kg',    weight: 'Per kg — thin spiced sausages',  desc: 'Spiced North African lamb merguez with harissa and cumin. Grill on high heat for best results.' },
     { id: 19, name: 'Frozen Lamb Shanks',      category: 'Frozen',    emoji: '❄️', img: 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=500&h=350&fit=crop&auto=format', price: 19.99, unit: '/each',  weight: 'Per shank — approx. 700–900g',  desc: 'Individually frozen lamb shanks — perfect for slow-cooked casseroles and tagines.' },
-    { id: 20, name: 'Frozen Whole Chicken',    category: 'Frozen',    emoji: '❄️', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=350&fit=crop&auto=format', price: 9.99,  unit: '/each',  weight: 'Per bird — frozen, approx. 1.6kg', desc: 'Frozen whole halal chicken. Thaw overnight and cook as desired.' },
+    { id: 20, name: 'Frozen Whole Chicken',    category: 'Frozen',    emoji: '❄️', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=500&h=350&fit=crop&auto=format', price: 9.99,  unit: '/each',  weight: 'Per bird — frozen, approx. 1.6kg', desc: 'Frozen whole chicken. Thaw overnight and cook as desired.' },
   ];
 
-  let cart = [];
   let currentFilter = 'all';
   let currentProduct = null;
-  let detailQty = 1;
-  let orderNum = 1001;
 
   // ===== STICKY HEADER =====
   const siteHeader = document.getElementById('site-header');
@@ -1901,7 +1848,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.getElementById('mobile-nav').classList.remove('open');
     if (page === 'shop') renderShopGrid(currentFilter);
-    if (page === 'cart') renderCart();
   }
 
   function toggleMobileNav() {
@@ -1917,14 +1863,12 @@
       <div class="product-card" onclick="${onclick_fn}">
         <div class="product-img">
           ${mediaHtml}
-          <span class="halal-dot">Halal</span>
         </div>
         <div class="product-info">
           <div class="product-category">${p.category}</div>
           <div class="product-name">${p.name}</div>
           <div class="product-footer">
             <div class="product-price">$${p.price.toFixed(2)}<span class="unit"> ${p.unit}</span></div>
-            <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${p.id})">+ Add</button>
           </div>
         </div>
       </div>`;
@@ -1964,7 +1908,6 @@
   // ===== PRODUCT DETAIL =====
   function openProduct(id) {
     currentProduct = products.find(p => p.id === id);
-    detailQty = 1;
     const imgEl = document.getElementById('pd-img');
     if (currentProduct.img) {
       imgEl.innerHTML = `<img src="${currentProduct.img}" alt="${currentProduct.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.textContent='${currentProduct.emoji}'">`;
@@ -1976,94 +1919,10 @@
     document.getElementById('pd-price').innerHTML = `$${currentProduct.price.toFixed(2)} <span style="font-size:1rem;color:var(--muted);font-weight:400">${currentProduct.unit}</span>`;
     document.getElementById('pd-weight').textContent = currentProduct.weight;
     document.getElementById('pd-desc').textContent = currentProduct.desc;
-    document.getElementById('detail-qty').textContent = detailQty;
     showPage('product');
   }
 
-  function changeDetailQty(delta) {
-    detailQty = Math.max(1, detailQty + delta);
-    document.getElementById('detail-qty').textContent = detailQty;
-  }
 
-  function addDetailToCart() {
-    for (let i = 0; i < detailQty; i++) addToCart(currentProduct.id, false);
-    showToast(`✓ ${detailQty}× ${currentProduct.name} added to cart`);
-    updateCartCount();
-  }
-
-  // ===== CART =====
-  function addToCart(id, notify = true) {
-    const p = products.find(x => x.id === id);
-    const existing = cart.find(x => x.id === id);
-    if (existing) existing.qty++;
-    else cart.push({ ...p, qty: 1 });
-    updateCartCount();
-    if (notify) showToast(`✓ ${p.name} added to cart`);
-  }
-
-  function updateCartCount() {
-    const total = cart.reduce((s, x) => s + x.qty, 0);
-    document.getElementById('cart-count').textContent = total;
-  }
-
-  function renderCart() {
-    const container = document.getElementById('cart-items');
-    if (cart.length === 0) {
-      container.innerHTML = `<div class="empty-cart"><div class="icon">🛒</div><h3>Your cart is empty</h3><p>Browse our products and add some items.</p><br/><button class="btn btn-primary" onclick="showPage('shop')">Shop Now</button></div>`;
-      document.getElementById('cart-subtotal').textContent = '$0.00';
-      document.getElementById('cart-total').textContent = '$0.00';
-      document.getElementById('checkout-btn').disabled = true;
-      document.getElementById('checkout-btn').style.opacity = '0.45';
-      return;
-    }
-    document.getElementById('checkout-btn').disabled = false;
-    document.getElementById('checkout-btn').style.opacity = '1';
-    container.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <div class="cart-item-img">${item.img ? `<img src="${item.img}" alt="${item.name}" onerror="this.parentElement.textContent='${item.emoji}'">` : item.emoji}</div>
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-weight">${item.weight}</div>
-          <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
-        </div>
-        <div class="cart-item-actions">
-          <div class="item-qty">
-            <button onclick="changeCartQty(${item.id}, -1)" aria-label="Decrease">&#8722;</button>
-            <span>${item.qty}</span>
-            <button onclick="changeCartQty(${item.id}, 1)" aria-label="Increase">&#43;</button>
-          </div>
-          <button class="remove-btn" onclick="removeFromCart(${item.id})" aria-label="Remove">&#10005;</button>
-        </div>
-      </div>`).join('');
-    const subtotal = cart.reduce((s, x) => s + x.price * x.qty, 0);
-    document.getElementById('cart-subtotal').textContent = '$' + subtotal.toFixed(2);
-    document.getElementById('cart-total').textContent = '$' + subtotal.toFixed(2);
-  }
-
-  function changeCartQty(id, delta) {
-    const item = cart.find(x => x.id === id);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
-    updateCartCount();
-    renderCart();
-  }
-
-  function removeFromCart(id) {
-    cart = cart.filter(x => x.id !== id);
-    updateCartCount();
-    renderCart();
-  }
-
-  function proceedToCheckout() {
-    if (cart.length === 0) return;
-    const num = 'TKB-' + orderNum++;
-    document.getElementById('confirm-order-num').textContent = '#' + num;
-    document.getElementById('confirm-order-num2').textContent = num;
-    cart = [];
-    updateCartCount();
-    showPage('confirm');
-  }
 
   // ===== FAQ =====
   function toggleFaq(el) {
